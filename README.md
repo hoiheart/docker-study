@@ -19,12 +19,13 @@ https://nodejs.org/ko/docs/guides/nodejs-docker-webapp/
 
 ### build
 ```bash
-docker build -t docker-study .
+docker build -t docker-study:tag .
 ```
 
-### background run
+### background run & stop
 ```bash
-docker run -p 3000:3000 -d docker-study
+docker run --name node -p 3000:3000 docker-study:0.0.1
+docker stop node
 ```
 
 ### etc
@@ -41,3 +42,10 @@ docker logs <container id>
 # 컨테이너 접근
 docker exec -it <container id> /usr/app
 ```
+
+## 참고할 만한 문서
+
+* [가장 빨리 만나는 Docker](http://pyrasis.com/docker.html)
+* [Docker 로 Node.js 배포하기](https://seokjun.kim/docker-nginx-node/)
+* [Github action 을 이용해서 AWS ECS 배포 자동화](https://velog.io/@q00/Github-action-aws-ecs-Github-CICD-55k38sf8ik)
+* [[Github Action]AWS S3에 React 프로젝트 배포하기](https://velog.io/@loakick/Github-Action-AWS-S3%EC%97%90-React-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)

@@ -19,5 +19,4 @@ COPY . .
 EXPOSE 3000
 
 # CMD 구동
-CMD [ "npm", "run", "build" ]
-CMD [ "npm", "start" ]
+CMD npm run build && npm start
