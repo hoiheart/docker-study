@@ -1,4 +1,4 @@
-# docker-study
+# Docker
 
 ## Windows 설치
 
@@ -12,10 +12,24 @@ https://blog.gaerae.com/2019/04/docker-for-windows-troubleshooting.html#6)
 https://nodejs.org/ko/docs/guides/nodejs-docker-webapp/
 
 * Node 버전 : 12 (LTS)
-* npm install : RUN npm ci --only=production
-  > [CI 모드 설명](https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable)
+* npm install : RUN npm ci
+  > [CI 모드란?](https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable)
 
-## Scripts
+## Docker-Compose를 이용한 다중 환경 구성하기
+
+* https://docs.docker.com/compose/
+* [React,MongoDB,Express,Nginx 도커 개발 환경 구성하기](https://javaexpert.tistory.com/1013)
+* [도커 컴포즈를 활용하여 완벽한 개발 환경 구성하기](https://www.44bits.io/ko/post/almost-perfect-development-environment-with-docker-and-docker-compose)
+* [간단한 Docker + Mongodb/Redis/Nginx 설정](https://gompro.postype.com/post/1735800)
+
+
+## Docker 명령어 정리
+
+### Compose 실행 & 중단
+```bash
+docker-compose up --build # --build는 내부 Dockerfile 변경시 다시 빌드 실행
+docker-compose down
+```
 
 ### build
 ```bash
@@ -43,7 +57,7 @@ docker logs <container id>
 docker exec -it <container id> /usr/app
 ```
 
-## 참고할 만한 문서
+## 참고 문서
 
 * [가장 빨리 만나는 Docker](http://pyrasis.com/docker.html)
 * [Docker 로 Node.js 배포하기](https://seokjun.kim/docker-nginx-node/)
