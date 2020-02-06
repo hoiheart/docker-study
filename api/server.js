@@ -15,13 +15,22 @@ fastify.register(server.createHandler({
   cors: true
 }))
 
+// docker 환경은 image 이름으로 사용
+// https://stackoverflow.com/questions/49095032/cant-connect-to-mongo-docker-image-with-mongoose
+// todo 로컬에서도 접속될 수 있도록 환경변수 분기 처리
+mongoose.connect(`mongodb://${env.MONGODB_USER}:${env.MONGODB_PASS}@mongo:27017/${env.MONGODB_DATABASE}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(
+  () => console.log('connected'),
+  err => console.log(err)
+)
+
 const start = async () => {
   try {
-    await mongoose.connect(`mongodb://${env.MONGODB_USER}:${env.MONGODB_PASS}@localhost:27017/${env.MONGODB_DATABASE}`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-    await fastify.listen(3001)
+    // docker 환경은 0.0.0.0 으로 사용
+    // https://www.fastify.io/docs/latest/Getting-Started/#your-first-server
+    await fastify.listen(3001, '0.0.0.0')
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
