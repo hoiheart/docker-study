@@ -58,8 +58,10 @@ docker logs <container id>
 # 컨테이너 접근
 docker exec -it <container id> /usr/app
 
-# 이미지 및 컨테이너 전체 삭제
-docker rmi $(docker images -q) --force
+# 전체 관리
+docker stop $(docker ps -a -q) # 중단
+docker rm $(docker ps -a -q) # 컨테이너 삭제
+docker rmi $(docker images -q) --force # 이미지 삭제
 ```
 
 ## 참고 문서
