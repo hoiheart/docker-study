@@ -58,6 +58,9 @@ docker logs <container id>
 # 컨테이너 접근
 docker exec -it <container id> /usr/app
 
+# 몽고 컨테이너 접근
+docker exec -it mongo bash
+
 # 전체 관리
 docker stop $(docker ps -a -q) # 중단
 docker rm $(docker ps -a -q) # 컨테이너 삭제
