@@ -2,6 +2,7 @@ version: "3"
 
 services:
   app:
+    container_name: app
     build:
       dockerfile: Dockerfile
       context: ./app
@@ -13,13 +14,13 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: "${MONGODB_USER}"
       MONGO_INITDB_ROOT_PASSWORD: "${MONGODB_PASS}"
-      # MONGO_INITDB_DATABASE: "${MONGODB_DATABASE}"
+      MONGO_INITDB_DATABASE: "${MONGODB_DATABASE}"
     volumes:
-      - data:/data/db
-      # - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
     ports:
       - "27017:27017"
     networks: 
@@ -28,7 +29,3 @@ services:
 networks: # 공유 네트워크
   server:
     driver: bridge
-
-volumes: # 몽고 DB 데이터
-  data:
-    driver: local
