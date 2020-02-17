@@ -40,6 +40,18 @@ services:
     networks: 
       - server
 
+  nginx:
+    container_name: nginx
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    networks: 
+      - server
+
 networks: # 공유 네트워크
   server:
     driver: bridge
